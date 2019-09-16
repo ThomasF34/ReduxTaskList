@@ -5,11 +5,6 @@ import TaskForm from './TaskForm'
 import { connect } from 'react-redux'
 
 class TaskList extends React.Component {
-  constructor(props) {
-    super(props);
-    this.addTask = this.addTask.bind(this);
-  }
-
   render() {
     return <div style={{ display: 'inline-block' }}>
       <h2>{this.props.name}</h2>
@@ -19,15 +14,15 @@ class TaskList extends React.Component {
       <TaskForm />
     </div>
   }
+}
 
-  addTask(newTask) {
-    this.state.tasks.push(newTask);
-    this.setState({ tasks: this.state.tasks });
-  }
-
-  propTypes = {
-    tasks: PropTypes.arrayOf(PropTypes.string).isRequired
-  }
+TaskList.propTypes = {
+  tasks: PropTypes.arrayOf(
+    PropTypes.shape({
+      text: PropTypes.string.isRequired,
+      completed: PropTypes.bool.isRequired
+    })
+  ).isRequired
 }
 
 export default connect((state) => { return { tasks: state.tasks } })(TaskList)
