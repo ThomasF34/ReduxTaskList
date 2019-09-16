@@ -8,7 +8,9 @@ import { Provider } from 'react-redux'
 import { createStore } from 'redux'
 import reducers from './reducers'
 
-const store = createStore(reducers, { tasks: [{ text: 'Something done', completed: true }, { text: 'Homework', completed: false }] });
+import { defaultStore } from './fixtures/defaults'
+
+const store = createStore(reducers, defaultStore);
 
 ReactDOM.render(
   <Provider store={store}> <App /> </Provider>,

@@ -1,4 +1,7 @@
-export const addTask = text => ({
+export const addTask = (text, idTaskList) => ({
   type: 'ADD_TASK',
-  text: text
+  payload: {
+    text,
+    idTaskList
+  }
 })

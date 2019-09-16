@@ -1,14 +1,15 @@
 import React from 'react';
 import TaskList from './components/TaskList'
 import './App.css';
+import { connect } from 'react-redux';
 
-function App() {
-  return (
-    <div>
+class App extends React.Component {
+  render() {
+    return <div>
       <h1>Wilcomen</h1>
-      <TaskList name='To be done QUICKLY' />
-    </div>
-  );
+      {this.props.taskLists.map((taskList, index) => <TaskList key={index} name={taskList.id} />)}
+    </div >
+  }
 }
 
-export default App;
+export default connect((state) => { return { taskLists: state.taskLists } })(App);
