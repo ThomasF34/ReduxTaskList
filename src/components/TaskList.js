@@ -2,7 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Task from './Task'
 import TaskForm from './TaskForm'
-import { connect } from 'react-redux'
 
 class TaskList extends React.Component {
   render() {
@@ -11,7 +10,7 @@ class TaskList extends React.Component {
       <ul>
         {this.props.tasks.map((task, index) => <Task key={index} text={task.text} done={task.completed} />)}
       </ul>
-      <TaskForm idTaskList={this.props.name} />
+      <TaskForm handleNewTask={this.props.handleNewTask} idTaskList={this.props.name} />
     </div>
   }
 }
@@ -23,9 +22,8 @@ TaskList.propTypes = {
       text: PropTypes.string.isRequired,
       completed: PropTypes.bool.isRequired
     })
-  )
+  ),
+  handleNewTask: PropTypes.func.isRequired
 }
 
-export default connect((state, ownProps) => {
-  return { tasks: state.taskLists.filter(list => list.id === ownProps.name).flatMap(list => list.tasks) }
-})(TaskList)
+export default TaskList

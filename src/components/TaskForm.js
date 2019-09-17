@@ -1,7 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { addTask } from '../actions'
-import { connect } from 'react-redux'
 
 class TaskForm extends React.Component {
   constructor(props) {
@@ -18,7 +16,7 @@ class TaskForm extends React.Component {
   }
 
   submit() {
-    this.props.dispatch(addTask(this.state.inputValue, this.props.idTaskList));
+    this.props.handleNewTask(this.state.inputValue, this.props.idTaskList);
     this.setState({ inputValue: '' })
   }
 
@@ -31,7 +29,8 @@ class TaskForm extends React.Component {
 }
 
 TaskForm.propTypes = {
-  idTaskList: PropTypes.string.isRequired
+  idTaskList: PropTypes.string.isRequired,
+  handleNewTask: PropTypes.func.isRequired
 }
 
-export default connect()(TaskForm)
+export default TaskForm

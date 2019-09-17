@@ -1,14 +1,14 @@
 import React from 'react';
-import TaskList from './components/TaskList'
-import TaskListForm from './components/TaskListForm'
 import './App.css';
+import TaskListContainer from './containers/TaskListContainer';
+import TaskListForm from './components/TaskListForm'
 import { connect } from 'react-redux';
 
 class App extends React.Component {
   render() {
     return <div>
       <h1>Wilkomen</h1>
-      {this.props.taskLists.map((taskList, index) => <TaskList key={index} name={taskList.id} />)}
+      {this.props.taskLists.map((taskList, index) => <TaskListContainer key={index} name={taskList.id} />)}
       <TaskListForm />
     </div >
   }
