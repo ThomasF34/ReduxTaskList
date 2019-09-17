@@ -9,7 +9,6 @@ class TaskForm extends React.Component {
     this.state = {
       inputValue: ''
     }
-    this.dispatch = props.dispatch;
     this.submit = this.submit.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
@@ -19,7 +18,8 @@ class TaskForm extends React.Component {
   }
 
   submit() {
-    this.dispatch(addTask(this.state.inputValue, this.props.idTaskList));
+    this.props.dispatch(addTask(this.state.inputValue, this.props.idTaskList));
+    this.setState({ inputValue: '' })
   }
 
   render() {
